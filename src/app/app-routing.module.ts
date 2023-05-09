@@ -36,6 +36,19 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'products',
+      },
+      // {
+      //   path: 'products',
+      //   component: ProductsComponent,
+      //   canActivate: [DashboardGuard],  
+      // }
+    ]
   }
 ];
 

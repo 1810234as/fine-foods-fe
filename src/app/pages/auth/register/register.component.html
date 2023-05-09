@@ -1,0 +1,78 @@
+<div class="register">
+  <div class="register__content">
+    <span class="register__content__title">Создайте новый аккаунт </span>
+
+    <div class="register__content__subtitle">
+      Уже есть аккаунт? <a [routerLink]="['/auth/login']">Войти</a>
+    </div>
+
+    <div
+      [ngClass]="{
+        register__content__status: true,
+        loading__active: currentStatus === 'loading',
+        error__active: currentStatus === 'error',
+        success__active: currentStatus === 'success'
+      }"
+    >
+      <mat-icon [ngClass]="{ active: currentStatus === 'loading' }"
+        >sync</mat-icon
+      >
+      <mat-icon [ngClass]="{ active: currentStatus === 'error' }"
+        >error_outline</mat-icon
+      >
+      <span>{{ currentStatusText }}</span>
+    </div>
+
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Имя</mat-label>
+        <input matInput formControlName="name" />
+        <mat-icon matSuffix>person</mat-icon>
+        <mat-error *ngIf="registrationForm.get('name')?.hasError('required')"
+          >Обязательно нужно ввести имя</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Электронная почта</mat-label>
+        <input matInput type="email" formControlName="email" />
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-error *ngIf="registrationForm.get('email')?.hasError('required')"
+          >Обязательное поле</mat-error
+        >
+        <mat-error *ngIf="registrationForm.get('email')?.hasError('email')"
+          >Некорректный email</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Пароль</mat-label>
+        <input matInput type="password" formControlName="password" />
+        <mat-icon matSuffix>lock</mat-icon>
+        <mat-error
+          *ngIf="registrationForm.get('password')?.hasError('required')"
+          >Обязательное поле</mat-error
+        >
+        <mat-error
+          *ngIf="registrationForm.get('password')?.hasError('minlength')"
+          >Пароль должен быть не менее 6 символов</mat-error
+        >
+      </mat-form-field>
+
+      <div class="register__content__extra">
+        Регистрируясь, я соглашаюсь с
+        <a [routerLink]="['/service']"> Условиями обслуживания </a> и
+        <a [routerLink]="['/policy']"> Политикой конфиденциальности </a>
+        .
+      </div>
+
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!registrationForm.valid"
+      >
+        Зарегистрировать
+      </button>
+    </form>
+  </div>
+</div>

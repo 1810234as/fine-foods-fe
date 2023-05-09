@@ -1,0 +1,49 @@
+<div class="login">
+  <div class="login__content">
+    <span class="login__content__title">Войти в аккаунт </span>
+    <div class="login__content__subtitle">
+      Нет аккаунта? <a [routerLink]="['/auth/register']">Создайте</a>
+    </div>
+
+    <div
+      [ngClass]="{
+        login__content__status: true,
+        loading__active: currentStatus === 'loading',
+        error__active: currentStatus === 'error',
+        success__active: currentStatus === 'success'
+      }"
+    >
+      <mat-icon [ngClass]="{ active: currentStatus === 'loading' }"
+        >sync</mat-icon
+      >
+      <mat-icon [ngClass]="{ active: currentStatus === 'error' }"
+        >error_outline</mat-icon
+      >
+      <span>{{ currentStatusText }}</span>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" required />
+        <mat-error *ngIf="loginForm.controls['email'].invalid">{{
+          getErrorMessage("email")
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" required />
+        <mat-error *ngIf="loginForm.controls['password'].invalid">{{
+          getErrorMessage("password")
+        }}</mat-error>
+      </mat-form-field>
+
+      <div class="login__content__resetPassword">
+        <a [routerLink]="['/auth/password-reset']">Забыли пароль?</a>
+      </div>
+
+      <button mat-raised-button color="primary" type="submit">Войти</button>
+    </form>
+  </div>
+</div>

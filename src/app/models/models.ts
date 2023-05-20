@@ -8,8 +8,7 @@ export interface IUserResponceModel {
 }
 
 export interface IProduct {
-  _id: string;
-  image: string;
+  id: string;
   name: string;
   price: number;
   description: string;
@@ -19,4 +18,9 @@ export interface IProductResponceModel {
   success: boolean;
   data: IProduct[];
   message?: string;
+}
+
+export interface DialogData {
+  type: 'create' | 'update';
+  product?: IProduct
 }

@@ -5,6 +5,8 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AuthGuard } from './guards/auth.guard';
+import { ProductsComponent } from './pages/dashboard/products/products.component';
+import { DashboardGuard } from './guards/dashboard.guard';
 
 const routes: Routes = [
   {
@@ -43,11 +45,11 @@ const routes: Routes = [
         pathMatch: 'full',
         redirectTo: 'products',
       },
-      // {
-      //   path: 'products',
-      //   component: ProductsComponent,
-      //   canActivate: [DashboardGuard],  
-      // }
+      {
+        path: 'products',
+        component: ProductsComponent,
+        canActivate: [DashboardGuard],  
+      }
     ]
   }
 ];

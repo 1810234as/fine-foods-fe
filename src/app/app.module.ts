@@ -20,6 +20,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ModalComponent } from './components/modal/modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     DashboardComponent,
     ProductsComponent,
     ModalComponent,
+    SnackbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     HttpClientModule,
     MatIconModule,
     MatTableModule,
-    MatDialogModule, MatProgressSpinnerModule
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

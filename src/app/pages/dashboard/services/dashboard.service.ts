@@ -37,7 +37,7 @@ export class DashboardService {
     return this.httpClient.post<{
       success: boolean;
       data: IProduct;
-      message?: string;
+      message: string;
     }>(`${environment.api}products/create`, product);
   }
 
@@ -45,11 +45,11 @@ export class DashboardService {
     return this.httpClient.put<{
       success: boolean;
       data: IProduct;
-      message?: string;
+      message: string;
     }>(`${environment.api}products/update/${product.id}`, product);
   }
 
-  async  deleteProduct(id: string) {
+  async deleteProduct(id: string) {
     return this.httpClient.delete<{
       success: boolean;
       message: string;

@@ -12,9 +12,10 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Цена</mat-label>
-      <input matInput formControlName="price" />
-      <mat-error *ngIf="productForm.controls['price'].invalid"
-        >Обязательное поле
+      <input matInput formControlName="price" type="number" />
+      <mat-error *ngIf="productForm.get('price')!.invalid && productForm.get('price')!.touched">
+        <span *ngIf="productForm.get('price')!.hasError('required')">Обязательное поле</span>
+        <span *ngIf="productForm.get('price')!.hasError('pattern')">Неверный формат цены</span>
       </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">

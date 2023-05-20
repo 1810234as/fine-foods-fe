@@ -1,94 +1,93 @@
 <div class="dashboard">
-    <div
-      [ngClass]="{
-        dashboard__drawer: true,
-        dashboard__drawer__active: isDrawerOpen
-      }"
-    >
-      <div class="dashboard__drawer__logo">Logo</div>
-  
-      <div class="dashboard__drawer__content">
-        <div class="dashboard__drawer__content__links">
-          <a
-            *ngFor="let link of links"
-            [ngClass]="{
-              dashboard__drawer__content__links__link: true,
-              drawer__inactive: !isDrawerOpen,
-              route__active: currentUrl === link.path
-            }"
-            [routerLink]="['/dashboard', link.path]"
-          >
-            <div
-              [ngClass]="{
-                dashboard__drawer__content__links__link__image: true,
-                drawer__inactive: !isDrawerOpen
-              }"
-            >
-              <mat-icon>{{link.icon}}</mat-icon>
-            </div>
-            <div
-              [ngClass]="{
-                dashboard__drawer__content__links__link__text: true,
-                drawer__active: isDrawerOpen
-              }"
-            >
-              <span>{{ link.title }}</span>
-            </div>
-          </a>
-  
+  <div
+    [ngClass]="{
+      dashboard__drawer: true,
+      dashboard__drawer__active: isDrawerOpen
+    }"
+  >
+    <div class="dashboard__drawer__logo">Logo</div>
+
+    <div class="dashboard__drawer__content">
+      <div class="dashboard__drawer__content__links">
+        <a
+          *ngFor="let link of links"
+          [ngClass]="{
+            dashboard__drawer__content__links__link: true,
+            drawer__inactive: !isDrawerOpen,
+            route__active: currentUrl === link.path
+          }"
+          [routerLink]="['/dashboard', link.path]"
+        >
           <div
-            (click)="logout()"
             [ngClass]="{
-              dashboard__drawer__content__links__link: true,
-              dashboard__drawer__content__links__link__lo: true,
+              dashboard__drawer__content__links__link__image: true,
               drawer__inactive: !isDrawerOpen
             }"
           >
-            <div
-              [ngClass]="{
-                dashboard__drawer__content__links__link__image: true,
-                drawer__inactive: !isDrawerOpen
-              }"
-            >
-              <mat-icon>exit_to_app</mat-icon>
-            </div>
-            <div
-              [ngClass]="{
-                dashboard__drawer__content__links__link__text: true,
-                drawer__active: isDrawerOpen
-              }"
-            >
-              <span>Выйти</span>
-            </div>
+            <mat-icon>{{ link.icon }}</mat-icon>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="dashboard__content">
-      <div class="dashboard__content__header">
+          <div
+            [ngClass]="{
+              dashboard__drawer__content__links__link__text: true,
+              drawer__active: isDrawerOpen
+            }"
+          >
+            <span>{{ link.title }}</span>
+          </div>
+        </a>
+
         <div
-          class="dashboard__content__header__menuToggle"
-          (click)="toggleDrawer()"
+          (click)="logout()"
+          [ngClass]="{
+            dashboard__drawer__content__links__link: true,
+            dashboard__drawer__content__links__link__lo: true,
+            drawer__inactive: !isDrawerOpen
+          }"
         >
-          <div>
-            <mat-icon [class.active]="!isDrawerOpen">menu</mat-icon>
-            <mat-icon [class.active]="isDrawerOpen">keyboard_arrow_left</mat-icon>
+          <div
+            [ngClass]="{
+              dashboard__drawer__content__links__link__image: true,
+              drawer__inactive: !isDrawerOpen
+            }"
+          >
+            <mat-icon>exit_to_app</mat-icon>
+          </div>
+          <div
+            [ngClass]="{
+              dashboard__drawer__content__links__link__text: true,
+              drawer__active: isDrawerOpen
+            }"
+          >
+            <span>Выйти</span>
           </div>
         </div>
-  
-        <div class="dashboard__content__header__user">
-          <span class="dashboard__content__header__user__text">{{
-            userName
-          }}</span>
-          <div class="dashboard__content__header__user__avatar">
-            {{ userName.charAt(0) }}
-          </div>
-        </div>
-      </div>
-  
-      <div class="dashboard__content__body">
-        <router-outlet></router-outlet>
       </div>
     </div>
   </div>
-  
+  <div class="dashboard__content">
+    <div class="dashboard__content__header">
+      <div
+        class="dashboard__content__header__menuToggle"
+        (click)="toggleDrawer()"
+      >
+        <div>
+          <mat-icon [class.active]="!isDrawerOpen">menu</mat-icon>
+          <mat-icon [class.active]="isDrawerOpen">keyboard_arrow_left</mat-icon>
+        </div>
+      </div>
+
+      <div class="dashboard__content__header__user">
+        <span class="dashboard__content__header__user__text">{{
+          userName
+        }}</span>
+        <div class="dashboard__content__header__user__avatar">
+          {{ userName.charAt(0) }}
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard__content__body">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

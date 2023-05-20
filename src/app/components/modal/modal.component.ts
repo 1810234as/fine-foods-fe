@@ -16,8 +16,8 @@ export class ModalComponent {
   ) {
     this.productForm = this.formBuilder.group({
       name: [data?.product && data?.product?.name, Validators.required],
-      price: [data?.product && data?.product?.price, Validators.required],
-      description: [data?.product && data?.product?.description],
+      price: [data?.product ? data?.product?.price : null, [Validators.required, Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]],
+      description: [data?.product && data?.product?.description, Validators.required],
       type: [data?.type ? data?.type : 'delete'],
       id: [data?.product && data?.product?._id],
     });
